@@ -1,0 +1,44 @@
+<div>
+  daily-box-office works!
+    {{ mtype }}
+    {{ mrange}}
+</div>
+
+<mat-form-field>
+  <input matInput [matDatepicker]="picker3" placeholder="Value binding" (dateInput)="addEvent('input', $event)" [value]="mdate.value">
+  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+  <mat-datepicker #picker3></mat-datepicker>
+</mat-form-field>
+
+<table mat-table [dataSource]="mdailyBoxOfficeList">
+  <ng-container matColumnDef="rnum">
+    <th mat-header-cell *matHeaderCellDef> 번호 </th>
+    <td mat-cell *matCellDef="let movie"> {{movie.rnum}} </td>
+  </ng-container>
+  <ng-container matColumnDef="rank">
+    <th mat-header-cell *matHeaderCellDef> 순위 </th>
+    <td mat-cell *matCellDef="let movie"> {{movie.rank}} </td>
+  </ng-container>
+  <ng-container matColumnDef="movieNm">
+    <th mat-header-cell *matHeaderCellDef> 영화제목 </th>
+    <td mat-cell *matCellDef="let movie"> {{movie.movieNm}} </td>
+  </ng-container>
+  <ng-container matColumnDef="openDt">
+    <th mat-header-cell *matHeaderCellDef> 개봉일 </th>
+    <td mat-cell *matCellDef="let movie"> {{movie.openDt}} </td>
+  </ng-container>
+  <ng-container matColumnDef="salesAcc">
+    <th mat-header-cell *matHeaderCellDef> 총매출 </th>
+    <td mat-cell *matCellDef="let movie"> {{movie.salesAcc}} </td>
+  </ng-container>
+  <ng-container matColumnDef="audiAcc">
+    <th mat-header-cell *matHeaderCellDef> 총관람객수 </th>
+    <td mat-cell *matCellDef="let movie"> {{movie.audiAcc}} </td>
+  </ng-container>
+  <ng-container matColumnDef="scrnCnt">
+    <th mat-header-cell *matHeaderCellDef> 개봉관수 </th>
+    <td mat-cell *matCellDef="let movie"> {{movie.scrnCnt}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+</table>

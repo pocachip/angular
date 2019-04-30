@@ -1,0 +1,239 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="mat-display-4"> Typography </div>
+
+<div class="mat-display-4">This is display 4</div>
+<div class="mat-display-3">This is display 3</div>
+<div class="mat-display-2">This is display 2</div>
+<div class="mat-display-1">This is display 1</div>
+
+<div class="mat-headline">This is a heading for h1</div>
+<div class="mat-title">This is a heading for h2</div>
+<div class="mat-subheading-2">This is a heading for h3</div>
+<div class="mat-subheading-1">This is a heading for h4</div>
+
+<div class="mat-body-1">This is body text</div>
+<div class="mat-body-2">This is bold body text</div>
+<div class="mat-body-caption">This is caption text</div>
+
+<div class="mat-typography">
+  <h1>This is a heading for h1</h1>
+  <h2>This is a heading for h2</h2>
+  <h3>This is a heading for h3</h3>
+  <h4>This is a heading for h4</h4>
+</div>
+
+<div class="mat-display-4"> Button </div>
+<div>
+  <button mat-button>Click me!</button>
+  <button mat-raised-button>Click me!!</button>
+  <button mat-flat-button>Click me!</button>
+  <button mat-stroked-button>Click me!</button>
+</div>
+
+<div>
+  <button mat-icon-button>Icon</button>
+  <button mat-fab>Fab</button>
+  <button mat-mini-fab>Minifab</button>
+</div>
+
+<div>
+  <button color="primary" mat-button>Primary</button>
+  <button color="accent" mat-button>Accent</button>
+  <button color="warn" disableRipple mat-button>Warn</button>
+  <button color="primary" mat-raised-button>Primary</button>
+  <button color="accent" mat-raised-button>Accent</button>
+  <button color="warn" mat-raised-button>Warn</button>
+</div>
+
+<div class="mat-display-4"> Button Toogle </div>
+<div>
+  <mat-button-toggle #toggleBtn checked disableRipple disable>Toggle</mat-button-toggle>
+  {{toggleBtn.checked}}
+</div>
+
+<div class="mat-display-4"> Button Toogle(Group) </div>
+<div>
+  <mat-button-toggle-group #toggleGroup="matButtonToggleGroup" multiple>
+    <mat-button-toggle value="angular">Angular</mat-button-toggle>
+    <mat-button-toggle value="react">React</mat-button-toggle>
+    <mat-button-toggle value="vue">Vue</mat-button-toggle>
+  </mat-button-toggle-group>
+  {{toggleGroup.value}}
+</div>
+
+<div class="mat-display-4"> Icon </div>
+<div>
+  <mat-icon color="primary">people</mat-icon>
+</div>
+
+
+<div class="mat-display-4"> Badge </div>
+<div>
+  <span matBadge="5">Notifications</span>
+</div>
+<div>
+  <span matBadge="5" matBadgePosition="below before">Notifications</span>
+</div>
+<div>
+  <span matBadge="5" matBadgePosition="below after">Notifications</span>
+</div>
+<div>
+  <span matBadge="5" matBadgePosition="above before">Notifications</span>
+</div>
+<div>
+  <span matBadge="5" matBadgeSize="small">Notifications</span>
+</div>
+<div>
+  <span matBadge="5" matBadgeSize="medium">Notifications</span>
+</div>
+<div>
+  <span matBadge="5" matBadgeSize="large">Notifications</span>
+</div>
+
+<div>
+  <span matBadge="5" matBadgeColor="primary">Notification</span>
+</div>
+<div>
+  <span matBadge="5" matBadgeColor="accent">Notification</span>
+</div>
+<div>
+  <span matBadge="5" matBadgeColor="warn" matBadgeOverlap="false">Notification</span>
+</div>
+
+<div class="mat-display-4"> Badge Property Binding</div>
+<div>
+  <span [matBadge]="notifications" [matBadgeHidden]="notifications ==0" matBadgeColor="warn" matBadgeOverlap="false">Notification</span>
+</div>
+<div class="mat-display-4"> Toolbar</div>
+<mat-toolbar color="primary" class="navbar">
+  <div>Codevolution </div>
+  <div>
+    <span>Home</span>
+    <span>About</span>
+    <span>Services</span>
+  </div>
+</mat-toolbar>
+<div class="mat-display-4"> Sidenav</div>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" [(opened)]=opened>Sidenav</mat-sidenav>
+  <mat-sidenav-content>Main
+    <button (click)="opened=!opened">Toggle Button</button>
+    <button (click)="sidenav.open()">Open</button>
+    <button (click)="sidenav.close()">Close</button>
+    <button (click)="sidenav.toggle()">Toggle</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<div class="mat-display-4"> Menu</div>
+<mat-menu #appMenu="matMenu" xPosition="after" yPosition="above">
+  <button mat-menu-item [matMenuTriggerFor]="subMenu">FrontEnd</button>
+  <button mat-menu-item>BackEnd</button>
+</mat-menu>
+<button mat-flat-button [matMenuTriggerFor]="appMenu">Menu</button>
+
+<mat-menu #subMenu="matMenu">
+  <button mat-menu-item>Angular</button>
+  <button mat-menu-item>React</button>
+  <button mat-menu-item>Vue</button>
+</mat-menu>
+
+<mat-menu #lazyMenu="matMenu">
+  <ng-template matMenuContent let-name="name">
+    <button mat-menu-item>Settings</button>
+    <button mat-menu-item>Log out {{name}}</button>
+  </ng-template>
+</mat-menu>
+
+<button 
+   mat-raised-button 
+   [matMenuTriggerData]="{ name: 'Vishwas' }" 
+   [matMenuTriggerFor]="lazyMenu"
+>
+  Vishwas
+</button>
+<button 
+    mat-rasied-button 
+    [matMenuTriggerData]="{ name: 'Codevolution' }" [matMenuTriggerFor]="lazyMenu"
+>
+  Codevolution
+</button>
+<div class="mat-display-4"> List</div>
+<mat-list dense>
+  <mat-list-item>Item1</mat-list-item>
+  <mat-list-item>Item2</mat-list-item>
+  <mat-list-item>Item3</mat-list-item>
+</mat-list>
+<mat-nav-list>
+  <a mat-list-item href="#">Home</a>
+  <a mat-list-item href="#">About</a>
+  <a mat-list-item href="#">Services</a>
+</mat-nav-list>
+<mat-list>
+  <mat-list-item>
+    <mat-icon matListIcon>home</mat-icon>
+    <h3 matLine>Heading</h3>
+    <p matLine>Line</p>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <mat-list-item>
+    <mat-icon matListIcon>folder</mat-icon>
+    <h3 matLine>Heading</h3>
+    <p matLine>Line</p>
+  </mat-list-item>
+</mat-list>
+
+
+<div class="mat-display-4"> Card </div>
+<mat-card>
+  <mat-card-title>
+    Card title
+  </mat-card-title>
+  <mat-card-content>
+    This is the card content
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-flat-button align="end">Login</button>
+  </mat-card-actions>
+</mat-card>
+
+
+<div class="mat-display-4"> Grid List </div>
+<mat-grid-list cols="2">
+  <mat-grid-tile rowspan="1" rowHeight="100px">Tile 1</mat-grid-tile>
+  <mat-grid-tile>Tile 2</mat-grid-tile>
+  <mat-grid-tile>Tile 3</mat-grid-tile>
+  <mat-grid-tile>Tile 4</mat-grid-tile>
+</mat-grid-list>
+
+<div class="mat-display-4"> Expansion Panel</div>
+<mat-accordion>
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Angular Fundamentals
+    </mat-panel-title>
+    <mat-panel-description>
+      Total Duration : 3 hours
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p> This is the pannel contents. Add course details</p>
+  <mat-action-row>
+    <button mat-button>Enroll</button>
+  </mat-action-row>
+</mat-expansion-panel>
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Angular Material
+    </mat-panel-title>
+    <mat-panel-description>
+      Total Duration : 2 hours
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <p> This is the pannel contents. Add course details</p>
+  <mat-action-row>
+    <button mat-button>Enroll</button>
+  </mat-action-row>
+</mat-expansion-panel>
+</mat-accordion>
+
