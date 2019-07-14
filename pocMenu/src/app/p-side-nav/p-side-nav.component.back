@@ -1,0 +1,8 @@
+<!--
+<div *ngFor = 'let item of gMenus$ | slice: pageStart:pageEnd;' #menuItem tabindex="0" class="pMenu" (focus)="focus()" >
+  {{item.label}}
+</div>>
+li *ngFor="let item of items; let i = index" [attr.data-index]="i"
+-->
+<div><button #myBtn (click)="onclick()">Test</button></div>
+<div><button #myBtn2 (click)="prepareMenu()">Test</button></div>
