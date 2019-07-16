@@ -26,7 +26,7 @@ export class PSideNavComponent implements OnInit, AfterViewInit {
   @ViewChildren('menuItem') menus !: QueryList<any>;
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
-    console.log(event);
+    //console.log(event);
     if (event.keyCode === ENTER || event.keyCode === DOWN_ARROW ) {
       this.goNext();
     } else if ( event.keyCode === UP_ARROW ) {
@@ -80,60 +80,54 @@ export class PSideNavComponent implements OnInit, AfterViewInit {
     this.keyManager = new ListKeyManager(this.menus);
     this.keyManager.withVerticalOrientation(true);
     this.keyManager.withWrap();
-    console.log(this.keyManager);
+    //console.log(this.keyManager);
 
 
     this.menus.changes.subscribe(c => { c.toArray().forEach(item => {});
-     // this.keyManager.setFirstItemActive();
-     //this.renderer.invokeElementMethod(this.menus.first.nativeElement, 'focus');
-     //it's work this.menus.first.nativeElement.focus();
-     //this.focus();
      this.myFocus(this.idxMenu); //hack because alway 0 index first
+     console.log(this.gMenus$);
     });
 
   }
 
   onclick(){
-//    this.itemSize = this.gMenus$.length;
-    console.log('click');
     this.goNext();
   }
 
   focus() {
-    console.log('focus called');
+    //console.log('focus called');
 //    this.menus.first.nativeElement.focus();
     //this.host.nativeElement.firstChild.focus();
   }
 
   myFocus(i: number){
-    console.log('call myFocus'+ i);
-    console.log(this.menus);
-    console.log(this.idxMenu);
+    //console.log('call myFocus'+ i);
+    //console.log(this.menus);
+    //console.log(this.idxMenu);
 //    console.log(this.menus._results);
     if ( this.isLastPage() && this.bLastPageScroll){
-        console.log("scroll MOde with"+i);
+        //console.log("scroll MOde with"+i);
         let findedMenuLabel: string = '';
         this.gMenus$.forEach(element => {
 //          console.log(element);
-          console.log(`elm.id: ${element.id} i:${i}`);
+          //console.log(`elm.id: ${element.id} i:${i}`);
           if( element.id === i.toString()) {
             findedMenuLabel = element.label;
           }
         });
-       console.log('finded! :'+ findedMenuLabel);
+       //console.log('finded! :'+ findedMenuLabel);
 
         this.menus.forEach((list,idx)=>{
           let strHTML =list.nativeElement.innerHTML;
-          console.log(strHTML);
+          //console.log(strHTML);
           if(strHTML.trim() === findedMenuLabel) {
-            console.log('invoke called!');
+            //console.log('invoke called!');
             this.renderer.invokeElementMethod(list.nativeElement, 'focus');
           }
         });
       } else {
-//        console.log("Page MOde");
         let remainder = (this.idxMenu) % this.cntPageItem;
- //       console.log(`i: ${i} idxMenu: ${this.idxMenu} remainder: ${remainder}`);
+ //     console.log(`i: ${i} idxMenu: ${this.idxMenu} remainder: ${remainder}`);
         this.menus.forEach((list,idx)=>{
           if(remainder === idx) {
   //          console.log('invoke called!');
@@ -183,19 +177,19 @@ export class PSideNavComponent implements OnInit, AfterViewInit {
     // 1. caculate current page from menuidx
    // this.setCurPage();
     //console.log(' ');
-    console.log(`RefresPage: page from ${this.pageStart} to ${this.pageEnd} : idx ${this.idxMenu} this page ${this.numCurPage}`);
+    //console.log(`RefresPage: page from ${this.pageStart} to ${this.pageEnd} : idx ${this.idxMenu} this page ${this.numCurPage}`);
 
     this.setCurPage();
 
     // 2. setup view slice: start & end
     if( this.idxMenu === 0) {
-      console.log('goHome!!');
+      //console.log('goHome!!');
       this.setHomePage();
       return;
     }
 
     if ( this.isLastPage() && this.bLastPageScroll){
-     console.log(`   action!!!!!!!!!!!!!! ${this.pageEnd} : ${this.itemSize} ${this.numCurPage}`);
+     //console.log(`   action!!!!!!!!!!!!!! ${this.pageEnd} : ${this.itemSize} ${this.numCurPage}`);
       let remainder = (this.idxMenu+1) % this.cntPageItem;
       if( remainder > 0 ){
         let remainder = (this.idxMenu+1) % this.cntPageItem;
@@ -220,22 +214,7 @@ export class PSideNavComponent implements OnInit, AfterViewInit {
 
     this.numCurPage = Math.floor(this.idxMenu / this.cntPageItem + 1);
 
-//    let before = this.getCurPage();
     this.goNext();
- //   let after =  this.getCurPage();
-
-  //  console.log(`idxNum: ${this.idxMenu} before: ${before}, after: ${after}`);
-  //  if(before !== after){
-  ////    console.log('page changed!!');
-  //  }
-
-    //console.log('total Menu length:' + this.gMenus$.length);
-    //console.log('total Page count:' + this.cntTotalPage);
-    //console.log('Current Page number:' + this.numCurPage);
-
-     //first ....last-1 ...normal
-     //last page before ...scroll...change index
-     //
   }
 
   toggle() {

@@ -7,11 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { PSideNavComponent } from './p-side-nav/p-side-nav.component';
 import { MenuService } from './menu.service';
+import { PSideNavsComponent } from './p-side-navs/p-side-navs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PSideNavComponent
+    PSideNavComponent,
+    PSideNavsComponent
   ],
   imports: [
     BrowserModule,

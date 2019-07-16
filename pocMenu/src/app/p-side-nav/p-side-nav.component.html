@@ -1,8 +1,8 @@
 <div [@showState]="isOpen ? 'open' : 'close'" class="pocNavi">
   <div *ngFor = 'let item of gMenus$ | slice: pageStart:pageEnd;' #menuItem tabindex="0" class="pMenu" >
   {{item.label}}
+  </div>
 </div>
-</div>
-<div><button #myBtn (click)="onclick()">Test</button></div>
-<div><button #myBtn2 (click)="prepareMenu()">Test</button></div>
-<div><button #myBtn3 (click)="toggle()">Test</button></div>
+<div><button #myBtn (click)="goPrev()">Go Prev</button></div>
+<div><button #myBtn2 (click)="goNext()"> Go Next</button></div>
+<div><button #myBtn3 (click)="toggle()">Toggle Menu</button></div>
