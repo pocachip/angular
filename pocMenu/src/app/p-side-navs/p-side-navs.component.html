@@ -1,3 +1,12 @@
-<p>p-side-navs works!</p>
-<br><br>
-<app-p-side-nav></app-p-side-nav>
+<div class="container">
+    <div class="item">
+        <app-p-side-nav [i_menus]="gMenu1" [category1_id]="category1_id" (selected_id)="onSelected($event)"></app-p-side-nav>
+    </div>
+    <div class="item">
+    </div>
+    <div class="item">
+    </div>
+    <div class="item">
+        I am Content area;
+    </div>
+</div>

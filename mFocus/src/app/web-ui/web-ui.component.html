@@ -1,0 +1,12 @@
+<div tabindex="0" class="webui" (focus)="onfocus()">
+    <span *ngIf="bFocus">
+        <mat-icon class="indi_left" svgIcon="chevron-left" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+    </span>
+    <span *ngIf="item.icon" class="menu_icon">
+        <mat-icon svgIcon="{{item.icon}}" style="width: 50px;" aria-label="Example thumbs up SVG icon">&nbsp;&nbsp;</mat-icon>
+    </span>
+    <span>{{item.label}} </span>
+    <span *ngIf="bFocus">
+        <mat-icon class="indi_right" svgIcon="chevron-right" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+    </span>
+</div>

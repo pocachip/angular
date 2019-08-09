@@ -1,5 +1,5 @@
-<div [@showState]="isOpen ? 'open' : 'close'" class="pocNavi">
-  <div *ngFor = 'let item of gMenus$ | slice: pageStart:pageEnd;' #menuItem tabindex="0" class="pMenu" >
+<div [style.top.px]="top" [style.left.px]="left" [@showState]="isOpen ? 'open' : 'close'" class="pocNavi">
+  <div *ngFor = 'let item of i_menus| slice: pageStart:pageEnd;' #menuItem tabindex="0" class="pMenu" >
   {{item.label}}
   </div>
 </div>

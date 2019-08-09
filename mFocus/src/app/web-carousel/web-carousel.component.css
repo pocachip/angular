@@ -1,0 +1,15 @@
+.carousel {
+   display: flex;
+   /*
+   display: flex;
+   flex-direction: row; */
+   margin-right: auto; 
+   height: 100%;
+ 
+/*   border: 1px solid orange;  */
+}
+/*
+.container {
+   flex: 0;
+}
+*/

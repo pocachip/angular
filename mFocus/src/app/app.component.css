@@ -1,0 +1,48 @@
+.header { grid-area:  header };
+.homeportal { grid-area: homeportal; } 
+.con-list { grid-area: con-list };
+.footer { grid-area: footer; }
+
+.wrapper {
+   margin: 35px 45px 135px 45px;
+   display: grid;
+   grid-template-areas: 'header header'
+  'homeportal con-list'
+  'footer footer';
+}
+.con-list{
+   outline: 1px solid blue; 
+}
+.homeportal{
+   outline: 1px solid orange;
+}
+/*
+.wrapper > div {
+    outline: 1px solid red; 
+}
+.indicator {
+}
+
+.homeportal {
+}
+*/
+.header > span > img {
+   resize: both;
+   float: left;
+   max-width: 100px;
+   height: auto;
+}
+
+.weather {
+   resize: both;
+   width: 35px;
+   height: auto;
+   float: right;
+   right: 2% !important;
+   left: inherit;
+}
+
+.time {
+   float: right;
+   right: 3% !important;
+}

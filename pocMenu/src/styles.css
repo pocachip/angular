@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { margin: 0;padding: 0; border: 0;}
+div, span, p, ul, li { box-sizing: border-box;}
+body { font-size: 1.5rem;}
 
 #myVideo {
   position: fixed;
@@ -10,7 +11,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   min-height: 100%;
 }
 .content {
-  position: fixed;
   top: 20px;
   left: 20px;
   /*

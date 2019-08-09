@@ -1,0 +1,17 @@
+<div #carousel class="carousel">
+    <div class="indicator">
+        <app-indicator></app-indicator>
+    </div>
+    <div *ngIf="gIndi">
+        <app-web-container [menudata]="gIndi" (newfocus)="focusChange($event)" class="container"></app-web-container>
+    </div>
+    <div *ngIf="gCat0">
+        <app-web-container [menudata]="gCat0" (newfocus)="focusChange($event)" class="container"></app-web-container>
+    </div>
+    <div *ngIf="gCat1">
+        <app-web-container [menudata]="gCat1" (newfocus)="focusChange($event)" class="container"></app-web-container>
+    </div>
+    <div *ngIf="gCat2">
+        <app-web-container [menudata]="gCat2" (newfocus)="focusChange($event)" class="container"></app-web-container>
+    </div>
+</div>

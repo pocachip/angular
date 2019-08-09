@@ -1,6 +1,6 @@
-import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef, HostListener, Renderer, } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChildren, QueryList, ElementRef, HostListener, Renderer, Input, Output, EventEmitter, AfterContentInit, ChangeDetectorRef } from '@angular/core';
 import { MenuService } from '../menu.service';
-import { iMenu } from '../common/menu.model';
+import { iMenu, iCategory } from '../common/menu.model';
 import { ENTER, LEFT_ARROW, RIGHT_ARROW, DOWN_ARROW, UP_ARROW } from '@angular/cdk/keycodes';
 import { ListKeyManager } from '@angular/cdk/a11y';
 import { trigger, state, style, animate, transition } from '@angular/animations';
@@ -22,8 +22,17 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   ]
 })
 
-export class PSideNavComponent implements OnInit, AfterViewInit {
+export class PSideNavComponent implements OnInit, AfterViewInit, AfterContentInit {
+  @Input() category1_id: string;
+  @Input() i_menus: iCategory[];
+  @Input() category2_id: string;
+  @Input() category3_id: string;
+  @Input() top: number = 0;
+  @Input() left: number = 0;
   @ViewChildren('menuItem') menus !: QueryList<any>;
+
+  @Output() selected_id: EventEmitter<string> = new EventEmitter<string>();
+
   @HostListener('window:keyup', ['$event'])
   keyEvent(event: KeyboardEvent) {
     //console.log(event);
@@ -57,23 +66,49 @@ export class PSideNavComponent implements OnInit, AfterViewInit {
   itemSize = 0;
 
 
-  constructor(private host: ElementRef, private menuService: MenuService, private renderer: Renderer) { }
+  constructor(private host: ElementRef, private menuService: MenuService, private renderer: Renderer, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    return this.menuService.getMenus().subscribe(data => {
-      this.gMenus$ = data;
-      this.itemSize = this.gMenus$.length;
-      this.cntTotalPage = Math.ceil(this.itemSize / this.cntPageItem);
+ //   this.gMenus$ = this.i_menus;
+//    this.itemSize = this.gMenus$.length;
+    this.itemSize = this.i_menus.length;
+    this.cntTotalPage = Math.ceil(this.itemSize / this.cntPageItem);
 
-      let remainder = this.itemSize % this.cntPageItem;
-      // if remainder exist we scrolled when last page
-      if( remainder !== 0 ){
-         this.bLastPageScroll = true;
-      }
-      this.setHomePage();
-    });
+    let remainder = this.itemSize % this.cntPageItem;
+    // if remainder exist we scrolled when last page
+    if( remainder !== 0 ){
+      this.bLastPageScroll = true;
+    }
+    this.setHomePage();
+    /*
+    console.log('-----aftercontent_init--------------');
+    this.cdr.detectChanges();
+    console.log(this);
+    console.log('-------------------');
+
+    if(this.category1_id === null || this.category1_id === undefined) {
+      console.log('category1_id is null');
+      return this.menuService.getMenus().subscribe(data => {
+        this.gMenus$ = data;
+        this.itemSize = this.gMenus$.length;
+        this.cntTotalPage = Math.ceil(this.itemSize / this.cntPageItem);
+
+        let remainder = this.itemSize % this.cntPageItem;
+        // if remainder exist we scrolled when last page
+        if( remainder !== 0 ){
+          this.bLastPageScroll = true;
+        }
+        this.setHomePage();
+      });
+    } else {
+      console.log('p_id is not null'+ this.category1_id);
+    }
+    */
   }
 
+  ngAfterContentInit(){
+
+  }
   ngAfterViewInit(){
 //    console.log(this.menus);
     // hack by pocachip ...wait to init content while nothing do...
@@ -84,10 +119,15 @@ export class PSideNavComponent implements OnInit, AfterViewInit {
 
 
     this.menus.changes.subscribe(c => { c.toArray().forEach(item => {});
+/*    console.log('=---------');
+     console.log(this.menus);
+    console.log('=---------');*/
      this.myFocus(this.idxMenu); //hack because alway 0 index first
-     console.log(this.gMenus$);
+     //console.log(this.gMenus$);
     });
-
+    if ( this.top !== 0 || this.left !== 0 ){
+      console.log('top or left not zero!');
+    }
   }
 
   onclick(){
@@ -101,14 +141,13 @@ export class PSideNavComponent implements OnInit, AfterViewInit {
   }
 
   myFocus(i: number){
-    //console.log('call myFocus'+ i);
     //console.log(this.menus);
-    //console.log(this.idxMenu);
+//    console.log(this.idxMenu);
 //    console.log(this.menus._results);
     if ( this.isLastPage() && this.bLastPageScroll){
         //console.log("scroll MOde with"+i);
         let findedMenuLabel: string = '';
-        this.gMenus$.forEach(element => {
+        this.i_menus.forEach(element => {
 //          console.log(element);
           //console.log(`elm.id: ${element.id} i:${i}`);
           if( element.id === i.toString()) {
@@ -135,6 +174,7 @@ export class PSideNavComponent implements OnInit, AfterViewInit {
           }
         });
       }
+      this.selected_id.emit(i.toString());
   }
 
   prepareMenu() {
@@ -183,7 +223,7 @@ export class PSideNavComponent implements OnInit, AfterViewInit {
 
     // 2. setup view slice: start & end
     if( this.idxMenu === 0) {
-      //console.log('goHome!!');
+      console.log('goHome!!');
       this.setHomePage();
       return;
     }
@@ -209,7 +249,8 @@ export class PSideNavComponent implements OnInit, AfterViewInit {
 
 
   setNextPage() {
-    this.itemSize = this.gMenus$.length;
+    //this.itemSize = this.gMenus$.length;
+    this.itemSize = this.i_menus.length;
     this.cntTotalPage = Math.floor(this.itemSize / this.cntPageItem);
 
     this.numCurPage = Math.floor(this.idxMenu / this.cntPageItem + 1);

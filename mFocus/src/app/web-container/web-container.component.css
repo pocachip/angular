@@ -1,0 +1,25 @@
+.container {
+   position: relative;
+}
+
+.container:focus {
+   outline: 0;    
+   border: 4px dashed  red;
+}
+
+.pMenu {
+/*   width: 354px;
+   height: 300px;
+   text-align: center;
+   size: 1em; */
+   display: flex;
+/*   background-color: rgba(0,0,0,0.7);
+   color : white; */
+}
+/* test git */
+/*
+.pMenu:focus {
+   border-top: 4px solid red;
+   border-bottom: 4px solid red;
+}
+*/

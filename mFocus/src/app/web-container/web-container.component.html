@@ -1,0 +1,5 @@
+<div class="container">
+    <div *ngFor='let item of menudata'>
+        <app-web-ui [item]="item" (focused)="focusEvent($event)" class="pMenu"></app-web-ui>
+    </div>
+</div>

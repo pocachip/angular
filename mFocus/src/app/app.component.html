@@ -1,0 +1,15 @@
+<div class="wrapper">
+    <div class="header">
+        <span><button (click)="toggle()">전체화면</button></span>
+        <span><img src="../assets/ollehtv.png"> </span>
+        <span class="time">{{ currentDate | date: 'dd/mm/yyyy HH:mm:ss'}}</span>
+        <span><mat-icon class="weather" svgIcon="wi-cloudy-windy" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon></span>
+    </div>
+    <div class="homeportal">
+        <app-web-carousel></app-web-carousel>
+    </div>
+    <div class="con-list">
+        <app-poster-container></app-poster-container>
+    </div> 
+    <div class="footer"> Footer </div>
+</div>

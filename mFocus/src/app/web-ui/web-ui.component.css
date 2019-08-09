@@ -1,0 +1,28 @@
+.webui {
+   box-sizing: border-box;
+   line-height: 3em;
+   width: 15em;
+   font-size: 2em;
+   text-align: center;
+   background-color: rgba(0,0,0,0.5); 
+   color : white;
+} 
+
+.webui:focus { outline: 0;    
+   font-weight: bold;
+   font-size: xx-large;
+   border-top: 3px solid red;
+   border-bottom: 3px solid red;
+}
+
+.indi_right {
+   float: right;
+   right: 2% !important;
+   left: inherit;
+}
+
+.indi_left {
+   float: left;
+   right: 2% !important;
+   left: inherit;
+}
